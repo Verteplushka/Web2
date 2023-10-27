@@ -96,7 +96,6 @@ function setFields(x, y) {
     }
     this.document.getElementById("y").value = y;
     localStorage.setItem("y", y);
-    checkAllFields();
 }
 
 function drawDot(x, y){
