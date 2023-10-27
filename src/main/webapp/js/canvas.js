@@ -72,14 +72,10 @@ ctx.fill();
 canvas.addEventListener("click", function (event) {
     var x = event.offsetX;
     var y = event.offsetY;
-    addDot(x, y);
-});
-
-function addDot(x, y) {
-    ctx.fillStyle = "red"; // Цвет точки
-    ctx.fillRect(x, y, 2, 2); // Рисование точки
+    console.log("inputCords:", x, y);
     setFields((x - 200) / 20, (100 - y) / 20);
-}
+    checkAllFields();
+});
 
 function setFields(x, y) {
     x = Math.round(x);
@@ -88,7 +84,6 @@ function setFields(x, y) {
     } else if (x < -4) {
         x = -4;
     }
-    console.log(x);
     localStorage.setItem("x", x);
     let xElements = document.getElementsByName("x");
     for (let i = 0; i < xElements.length; i++) {
@@ -102,4 +97,11 @@ function setFields(x, y) {
     this.document.getElementById("y").value = y;
     localStorage.setItem("y", y);
     checkAllFields();
+}
+
+function drawDot(x, y){
+    x = 20*x+200;
+    y = 100-20*y;
+    ctx.fillStyle = "red"; // Цвет точки
+    ctx.fillRect(x, y, 2, 2); // Рисование точки
 }
