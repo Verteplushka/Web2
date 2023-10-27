@@ -18,6 +18,7 @@ document.getElementById("y").addEventListener("input", function () {
         $("#submit").prop("disabled", false);
         document.getElementById("error").innerHTML = "";
     }
+    localStorage.setItem("y", this.value);
 });
 
 document.getElementById("r").addEventListener("input", function () {
@@ -39,7 +40,10 @@ document.getElementById("r").addEventListener("input", function () {
     } else {
         $("#submit").prop("disabled", false);
         document.getElementById("error").innerHTML = "";
+        clear();
+        drawAllDots();
     }
+    localStorage.setItem("r", this.value);
 });
 
 $('input[name="x"]').click(function () {
@@ -51,12 +55,6 @@ $('input[name="x"]').click(function () {
     localStorage.setItem("x", this.value);
 });
 
-document.getElementById("y").addEventListener("input", function () {
-    localStorage.setItem("y", this.value);
-});
-document.getElementById("r").addEventListener("input", function () {
-    localStorage.setItem("r", this.value);
-});
 
 window.addEventListener("load", function () {
     let xElements = document.getElementsByName("x");
@@ -76,13 +74,7 @@ window.addEventListener("load", function () {
         this.document.getElementById("r").value = r;
     }
 
-    // drawGraph();
-    let jsonString = localStorage.getItem("dots");
-    if (jsonString != null) {
-        let dots = JSON.parse(jsonString);
-        for (let i = 0; i < dots.length; i++) {
-            drawDot(dots[i][0], dots[i][1]);
-        }
-    }
+    drawGraph();
+    drawAllDots();
     document.getElementById("tbody").innerHTML = localStorage.getItem("tbody");
 });

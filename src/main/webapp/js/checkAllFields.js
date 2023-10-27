@@ -1,10 +1,10 @@
 $("#submit").on("click", checkAllFields);
 
 function checkAllFields() {
-    var x = localStorage.getItem("x");
-    var y = $("#y").val();
-    var r = $("#r").val();
-    var response = "";
+    let x = localStorage.getItem("x");
+    let y = $("#y").val();
+    let r = $("#r").val();
+    let response = "";
 
     if (x === null) {
         response = "X must be chosen"

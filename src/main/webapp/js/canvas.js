@@ -1,7 +1,11 @@
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-drawGraph();
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+//drawGraph();
+
 function drawGraph() {
+    let r = $("#r").val() * 20;
+    // Рисование оси X с стрелкой на конце
     ctx.beginPath();
     ctx.moveTo(20, canvas.height / 2);
     ctx.lineTo(canvas.width - 20, canvas.height / 2);
@@ -15,14 +19,14 @@ function drawGraph() {
     ctx.fillStyle = "black";
     ctx.fill();
 
-// Рисование делений на оси X
-    for (var x = 40; x < canvas.width - 30; x += 20) {
+    // Рисование делений на оси X
+    for (var x = 30; x < canvas.width - 30; x += 20) {
         ctx.moveTo(x, canvas.height / 2 - 3);
         ctx.lineTo(x, canvas.height / 2 + 3);
         ctx.stroke();
     }
 
-// Рисование оси Y с стрелкой на конце
+    // Рисование оси Y с стрелкой на конце
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, 20);
     ctx.lineTo(canvas.width / 2, canvas.height - 20);
@@ -36,34 +40,35 @@ function drawGraph() {
     ctx.fillStyle = "black";
     ctx.fill();
 
-// Рисование делений на оси Y
-    for (var y = 40; y < canvas.height - 30; y += 20) {
+    // Рисование делений на оси Y
+    for (var y = 30; y < canvas.height - 30; y += 20) {
         ctx.moveTo(canvas.width / 2 - 3, y);
         ctx.lineTo(canvas.width / 2 + 3, y);
         ctx.stroke();
     }
 
-// Добавление меток
+    // Добавление меток
     ctx.fillStyle = "black";
     ctx.fillText("X", canvas.width - 10, canvas.height / 2 - 10);
     ctx.fillText("Y", canvas.width / 2 + 10, 10);
-
     ctx.fillText("R", canvas.width / 2 + 60, canvas.height / 2 + 20);
 
+
     ctx.fillStyle = "rgba(20, 60, 200, 0.5)"; // Голубой с прозрачностью 0.5
-    ctx.fillRect(canvas.width / 2, canvas.height / 2 - 30, 60, 30); // Координаты (50, 50) и размеры (200x100)
+
+    ctx.fillRect(canvas.width / 2 - r, canvas.height / 2, r, r); // Координаты (50, 50) и размеры (200x100)
 
     ctx.beginPath();
     ctx.moveTo(canvas.width / 2, canvas.height / 2); // Перемещение в точку (200, 50)
-    ctx.lineTo(canvas.width / 2 + 60, canvas.height / 2); // Линия к точке (100, 200)
-    ctx.lineTo(canvas.width / 2, canvas.height / 2 + 60);// Линия к точке (200, 200)
+    ctx.lineTo(canvas.width / 2, canvas.height / 2 - r); // Линия к точке (100, 200)
+    ctx.lineTo(canvas.width / 2 + r / 2, canvas.height / 2);// Линия к точке (200, 200)
     ctx.lineTo(canvas.width / 2, canvas.height / 2);
     ctx.closePath(); // Замкнуть треугольник
     ctx.fill();
 
 
     ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, 30, Math.PI / 2, Math.PI); // Координаты (200, 200), радиус 100, угол от 0 до Pi/2 (четверть круга)
+    ctx.arc(canvas.width / 2, canvas.height / 2, r, Math.PI, 3 * Math.PI / 2); // Координаты (200, 200), радиус 100, угол от 0 до Pi/2 (четверть круга)
     ctx.lineTo(canvas.width / 2, canvas.height / 2); // Соединить с центром для закрытия фигуры
     ctx.closePath(); // Завершить четверть круга
     ctx.fill();
@@ -73,11 +78,13 @@ function drawGraph() {
 canvas.addEventListener("click", function (event) {
     var x = event.offsetX;
     var y = event.offsetY;
-    setFields((x - 200) / 20, (100 - y) / 20);
+    setFields(x, y);
     checkAllFields();
 });
 
 function setFields(x, y) {
+    x = (x - canvas.height / 2) / 20;
+    y = (canvas.width / 2 - y) / 20;
     x = Math.round(x);
     if (x > 4) {
         x = 4;
@@ -106,8 +113,18 @@ function drawDot(x, y) {
     }
     dots.push([x, y]);
     localStorage.setItem("dots", JSON.stringify(dots));
-    x = 20 * x + 200;
-    y = 100 - 20 * y;
+    x = 20 * x + canvas.height / 2;
+    y = canvas.width / 2 - 20 * y;
     ctx.fillStyle = "red"; // Цвет точки
-    ctx.fillRect(x, y, 2, 2); // Рисование точки
+    ctx.fillRect(x, y, 3, 3); // Рисование точки
+}
+
+function drawAllDots() {
+    let jsonString = localStorage.getItem("dots");
+    if (jsonString != null & jsonString != "") {
+        let dots = JSON.parse(jsonString);
+        for (let i = 0; i < dots.length; i++) {
+            drawDot(dots[i][0], dots[i][1]);
+        }
+    }
 }

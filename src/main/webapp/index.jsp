@@ -48,7 +48,7 @@
     </div>
 
     <div class="block">
-        <canvas id="myCanvas" width="400" height="200"></canvas>
+        <canvas id="myCanvas" width="300" height="300"></canvas>
     </div>
 
 
