@@ -19,15 +19,15 @@
     <div class="block">
         <form onsubmit="checkAllFields()">
             X:
-            <input type="button" name="x" id="-4" value="-4">
-            <input type="button" name="x" id="-3" value="-3">
-            <input type="button" name="x" id="-2" value="-2">
-            <input type="button" name="x" id="-1" value="-1">
-            <input type="button" name="x" id="0" value="0">
-            <input type="button" name="x" id="1" value="1">
-            <input type="button" name="x" id="2" value="2">
-            <input type="button" name="x" id="3" value="3">
-            <input type="button" name="x" id="4" value="4">
+            <input type="button" name="x" value="-4">
+            <input type="button" name="x" value="-3">
+            <input type="button" name="x" value="-2">
+            <input type="button" name="x" value="-1">
+            <input type="button" name="x" value="0">
+            <input type="button" name="x" value="1">
+            <input type="button" name="x" value="2">
+            <input type="button" name="x" value="3">
+            <input type="button" name="x" value="4">
             <br>
             
             <label for="y">Y:</label>
