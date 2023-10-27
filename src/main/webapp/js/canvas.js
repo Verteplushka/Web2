@@ -98,9 +98,15 @@ function setFields(x, y) {
     localStorage.setItem("y", y);
 }
 
-function drawDot(x, y){
-    x = 20*x+200;
-    y = 100-20*y;
+function drawDot(x, y) {
+    let dots = JSON.parse(localStorage.getItem("dots"));
+    if (dots == null) {
+        dots = [];
+    }
+    dots.push([x, y]);
+    localStorage.setItem("dots", JSON.stringify(dots));
+    x = 20 * x + 200;
+    y = 100 - 20 * y;
     ctx.fillStyle = "red"; // Цвет точки
     ctx.fillRect(x, y, 2, 2); // Рисование точки
 }
