@@ -16,9 +16,9 @@ public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long startTime = nanoTime();
-        float x = Float.parseFloat(request.getParameter("x"));
-        float y = Float.parseFloat(request.getParameter("y"));
-        float r = Float.parseFloat(request.getParameter("r"));
+        int x = Integer.parseInt(request.getParameter("x"));
+        double y = Double.parseDouble(request.getParameter("y"));
+        double r = Double.parseDouble(request.getParameter("r"));
 
         String result;
         if((x<=0 & y<=0 & x>=-r & y>=-r) || (x<=0 & y>0 & x*x+y*y<=r*r) || (x>0 & y>0 & x<=r/2 & y<=-2*x+r)){
@@ -29,7 +29,7 @@ public class AreaCheckServlet extends HttpServlet {
 
         PrintWriter printWriter = response.getWriter();
         printWriter.println("<tr>");
-        String[] elements = {Float.toString(x), Float.toString(y), Float.toString(r), LocalDate.now().toString(), Long.toString((nanoTime() - startTime)), result};
+        String[] elements = {String.format("%d", x), String.format("%.15f", y), String.format("%.15f", r), LocalDate.now().toString(), Long.toString((nanoTime() - startTime)), result};
         for (String element : elements) {
             printWriter.println("<td>" + element + "</td>");
         }
