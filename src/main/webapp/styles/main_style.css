@@ -55,6 +55,10 @@ table, th, td {
     background-color: red;
 }
 
+input[type="button"]:not([name="x"]){
+    background-color: #3399ff;
+}
+
 input[id="submit"]:hover {
     cursor: pointer;
 }
