@@ -91,6 +91,11 @@ function setFields(x, y) {
     } else if (x < -4) {
         x = -4;
     }
+    if (y > 5) {
+        y = 4.999999999999999;
+    } else if (y < -5) {
+        y = -4.999999999999999;
+    }
     localStorage.setItem("x", x);
     let xElements = document.getElementsByName("x");
     for (let i = 0; i < xElements.length; i++) {
