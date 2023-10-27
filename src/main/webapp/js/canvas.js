@@ -105,7 +105,6 @@ function drawDot(x, y) {
         dots = JSON.parse(jsonString);
     }
     dots.push([x, y]);
-    console.log("dots", dots);
     localStorage.setItem("dots", JSON.stringify(dots));
     x = 20 * x + 200;
     y = 100 - 20 * y;

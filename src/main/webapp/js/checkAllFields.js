@@ -5,9 +5,8 @@ function checkAllFields() {
     var y = $("#y").val();
     var r = $("#r").val();
     var response = "";
-    console.log(r);
 
-    if (x === "") {
+    if (x === null) {
         response = "X must be chosen"
     } else if (isNaN(y)) {
         response = "Y must be a number";

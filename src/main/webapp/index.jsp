@@ -43,7 +43,7 @@
             <br>
 
             <input type="button" id="submit" value="отправить">
-            <input type="button" id="clearM" value="очистить таблицу">
+            <input type="button" id="clear" value="очистить таблицу">
         </form>
     </div>
 
@@ -74,7 +74,7 @@
 <script src="big.js-master/big.js"></script>
 <script src="js/canvas.js"></script>
 <script src="js/checkAllFields.js"></script>
-<script src="js/clearM.js"></script>
+<script src="js/clear.js"></script>
 </body>
 
 </html>

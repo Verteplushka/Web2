@@ -4,7 +4,7 @@ document.getElementById("y").addEventListener("input", function () {
 
     if (isNaN(y)) {
         response = "Y must be a number";
-    } else {
+    } else if (y != "") {
         let bigY = new Big(y);
         if (!(bigY.plus(new Big(-5)) < 0 && bigY.plus(new Big(5)) > 0)) {
             response = "Y must be in (-5; 5)";
@@ -26,7 +26,7 @@ document.getElementById("r").addEventListener("input", function () {
 
     if (isNaN(r)) {
         response = "R must be a number";
-    } else {
+    } else if (r != "") {
         let bigR = new Big(r);
         if (!(bigR.plus(new Big(-1)) > 0 && bigR.plus(new Big(-4)) < 0)) {
             response = "R must be in (1; 4)";
@@ -78,9 +78,8 @@ window.addEventListener("load", function () {
 
     // drawGraph();
     let jsonString = localStorage.getItem("dots");
-    console.log(jsonString);
-    if(jsonString!=""){
-    let dots = JSON.parse(jsonString);
+    if (jsonString != null) {
+        let dots = JSON.parse(jsonString);
         for (let i = 0; i < dots.length; i++) {
             drawDot(dots[i][0], dots[i][1]);
         }

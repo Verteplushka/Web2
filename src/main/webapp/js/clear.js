@@ -1,6 +1,6 @@
-$("#clearM").on("click", clearM);
+$("#clear").on("click", clear);
 
-function clearM() {
+function clear() {
     document.getElementById("tbody").innerHTML = "";
     localStorage.setItem("tbody", "");
     localStorage.setItem("dots", "");
