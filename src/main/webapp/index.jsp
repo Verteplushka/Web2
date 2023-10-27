@@ -13,7 +13,7 @@
 <body>
 
 <header>
-    Колбасин Владислав Ильич, P3216, Вариант 2613
+    Колбасин Владислав Ильич, P3216, Вариант 23918
 </header>
 <div class="block-container">
     <div class="block">

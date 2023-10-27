@@ -75,5 +75,15 @@ window.addEventListener("load", function () {
     if (r !== null) {
         this.document.getElementById("r").value = r;
     }
+
+    // drawGraph();
+    let jsonString = localStorage.getItem("dots");
+    console.log(jsonString);
+    if(jsonString!=""){
+    let dots = JSON.parse(jsonString);
+        for (let i = 0; i < dots.length; i++) {
+            drawDot(dots[i][0], dots[i][1]);
+        }
+    }
     document.getElementById("tbody").innerHTML = localStorage.getItem("tbody");
 });
