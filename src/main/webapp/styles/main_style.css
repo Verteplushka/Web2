@@ -9,22 +9,20 @@ header {
     font-family: sans-serif;
     font-size: 30px;
     text-align: center;
+    height: 50px;
 }
 
 .block-container {
     display: flex;
-    justify-content: space-between;
     font-size: 15px;
     flex-wrap: wrap;
 }
 
 .block {
     border-radius: 10px;
-    width: 45%;
-    margin: 20px;
-    padding: 10px;
-    /* border: 20px;
-    border-color: #3399ff; */
+    margin: 10px;
+    padding: 15px;
+    display: inline;
     background-color: #f0f0f0;
 }
 
@@ -33,7 +31,7 @@ header {
     border-collapse: collapse;
     display: block;
     overflow-y: auto;
-    max-height: 250px;
+    max-height: 300px;
 }
 
 button::selection {
