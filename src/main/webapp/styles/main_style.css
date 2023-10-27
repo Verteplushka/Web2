@@ -14,6 +14,7 @@ header {
 
 .block-container {
     display: flex;
+    justify-content: space-evenly;
     font-size: 15px;
     flex-wrap: wrap;
 }
