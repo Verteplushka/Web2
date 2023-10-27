@@ -40,7 +40,8 @@ document.getElementById("r").addEventListener("input", function () {
     } else {
         $("#submit").prop("disabled", false);
         document.getElementById("error").innerHTML = "";
-        clear();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawGraph();
         drawAllDots();
     }
     localStorage.setItem("r", this.value);
