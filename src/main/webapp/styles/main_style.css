@@ -14,7 +14,6 @@ header {
 
 .block-container {
     display: flex;
-    justify-content: space-evenly;
     font-size: 15px;
     flex-wrap: wrap;
 }
@@ -28,9 +27,10 @@ header {
 }
 
 #table {
+    text-align: center;
+    width: 550px;
     display: block;
     border-collapse: collapse;
-    display: block;
     overflow-y: auto;
     max-height: 300px;
 }
