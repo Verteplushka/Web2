@@ -110,14 +110,19 @@ function setFields(x, y) {
     localStorage.setItem("y", y);
 }
 
-function drawDot(x, y) {
+function addDot(x, y) {
+    let r = $("#r").val();
     let jsonString = localStorage.getItem("dots");
     let dots = [];
-    if (jsonString != "") {
+    if (jsonString != "" & jsonString != null) {
         dots = JSON.parse(jsonString);
     }
-    dots.push([x, y]);
+    dots.push([x / r, y / r]);
+    drawDot(x, y);
     localStorage.setItem("dots", JSON.stringify(dots));
+}
+
+function drawDot(x, y) {
     x = 20 * x + canvas.height / 2;
     y = canvas.width / 2 - 20 * y;
     ctx.fillStyle = "red"; // Цвет точки
@@ -125,11 +130,15 @@ function drawDot(x, y) {
 }
 
 function drawAllDots() {
+    let r = $("#r").val();
+    if (r === "") {
+        return;
+    }
     let jsonString = localStorage.getItem("dots");
     if (jsonString != null & jsonString != "") {
         let dots = JSON.parse(jsonString);
         for (let i = 0; i < dots.length; i++) {
-            drawDot(dots[i][0], dots[i][1]);
+            drawDot(dots[i][0] * r, dots[i][1] * r);
         }
     }
 }

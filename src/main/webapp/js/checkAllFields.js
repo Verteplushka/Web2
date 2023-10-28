@@ -47,7 +47,7 @@ function checkAllFields() {
         success: function (data) {
             $("#tbody").append(data);
             localStorage.setItem("tbody", document.getElementById("tbody").innerHTML);
-            drawDot(x, y);
+            addDot(x, y);
             $("#submit").prop("disabled", false);
         },
     });

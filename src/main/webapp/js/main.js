@@ -42,6 +42,7 @@ document.getElementById("r").addEventListener("input", function () {
         document.getElementById("error").innerHTML = "";
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawGraph();
+        console.log(r);
         drawAllDots();
     }
     localStorage.setItem("r", this.value);
@@ -74,7 +75,6 @@ window.addEventListener("load", function () {
     if (r !== null) {
         this.document.getElementById("r").value = r;
     }
-
     drawGraph();
     drawAllDots();
     document.getElementById("tbody").innerHTML = localStorage.getItem("tbody");
