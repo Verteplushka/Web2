@@ -1,24 +1,24 @@
-let x = getX();
-console.log(x);
-function getX() {
-    var xhr = new XMLHttpRequest();
-
-// Отправка GET-запроса к серверу
-    xhr.open('GET', 'Controller', true);
-
-// Отправка запроса на сервер
-    xhr.send();
-
-// Обработка ответа от сервера
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Обработка ответа от сервера
-                return xhr.responseText;
-                // Дальнейшая обработка ответа
-            } else {
-                return "error";
+function getDots() {
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    resolve(xhr.responseText);
+                } else {
+                    reject("error");
+                }
             }
-        }
-    };
+        };
+        xhr.open("GET", "Controller", true);
+        xhr.send();
+    });
 }
+
+getDots()
+    .then(function (response) {
+        console.log(response); // Вывод результата запроса
+    })
+    .catch(function (error) {
+        console.error(error); // Вывод ошибки, если запрос завершился неудачно
+    })

@@ -7,8 +7,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-import static java.lang.System.currentTimeMillis;
 import static java.lang.System.nanoTime;
 
 @WebServlet(name = "AreaCheckServlet", value = "/AreaCheckServlet")
@@ -27,12 +27,26 @@ public class AreaCheckServlet extends HttpServlet {
             result = "miss";
         }
 
-        PrintWriter printWriter = response.getWriter();
-        printWriter.println("<tr>");
-        String[] elements = {String.format("%d", x), String.format("%.15f", y), String.format("%.15f", r), LocalDate.now().toString(), Long.toString((nanoTime() - startTime)), result};
-        for (String element : elements) {
-            printWriter.println("<td>" + element + "</td>");
+        Dot newDot = new Dot(x, y, r, LocalDate.now(), (nanoTime() - startTime), result);
+        ServletContext servletContext = getServletContext();
+        ArrayList<Dot> prevDotsList = (ArrayList<Dot>) servletContext.getAttribute("dotsList");
+        if(prevDotsList!=null){
+            prevDotsList.add(newDot);
+            servletContext.setAttribute("dotsList", prevDotsList);
+        } else{
+            ArrayList<Dot> newDotsList = new ArrayList<>();
+            newDotsList.add(newDot);
+            servletContext.setAttribute("dotsList", newDotsList);
         }
-        printWriter.println("</tr>");
+
+        StringBuilder responseTable = new StringBuilder();
+        responseTable.append("<tr>");
+        String[] elements = {Integer.toString(newDot.getX()), Double.toString(newDot.getY()), Double.toString(newDot.getR()), newDot.getCurrentTime().toString(), Long.toString(newDot.getScriptTime()), newDot.getResult()};
+        for (String element : elements) {
+            responseTable.append("<td>").append(element).append("</td>");
+        }
+        responseTable.append("</tr>");
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(responseTable);
     }
 }

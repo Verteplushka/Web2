@@ -21,7 +21,9 @@ document.getElementById("y").addEventListener("input", function () {
     localStorage.setItem("y", this.value);
 });
 
-document.getElementById("r").addEventListener("input", function () {
+document.getElementById("r").addEventListener("input", validateR);
+
+function validateR(){
     let response = "";
     let r = $("#r").val();
 
@@ -42,11 +44,10 @@ document.getElementById("r").addEventListener("input", function () {
         document.getElementById("error").innerHTML = "";
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawGraph();
-        console.log(r);
         drawAllDots();
     }
     localStorage.setItem("r", this.value);
-});
+}
 
 $('input[name="x"]').click(function () {
     let xElements = document.getElementsByName("x");
