@@ -68,19 +68,19 @@
                 </tr>
                 </thead>
                 <tbody id="tbody">
+                <%
+                    ServletContext servletContext = pageContext.getServletContext();
+                    ArrayList<Dot> dotsList = (ArrayList<Dot>) servletContext.getAttribute("dotsList");
+                    if (dotsList != null) {
+                        for (Dot dot : dotsList) {
+                %>
                 <tr>
-                    <%
-                        ServletContext servletContext = pageContext.getServletContext();
-                        ArrayList<Dot> dotsList = (ArrayList<Dot>) servletContext.getAttribute("dotsList");
-                        if (dotsList != null) {
-                            for (Dot dot : dotsList) {
-                    %>
-                    <th><%= dot.getX() %></th>
-                    <th><%= dot.getY() %></th>
-                    <th><%= dot.getR() %></th>
-                    <th><%= dot.getCurrentTime() %></th>
-                    <th><%= dot.getScriptTime() %></th>
-                    <th><%= dot.getResult() %></th>
+                    <td><%= dot.getX() %></td>
+                    <td><%= dot.getY() %></td>
+                    <td><%= dot.getR() %></td>
+                    <td><%= dot.getCurrentTime() %></td>
+                    <td><%= dot.getScriptTime() %></td>
+                    <td><%= dot.getResult() %></td>
                 </tr>
                 <%
                         }

@@ -21,8 +21,7 @@ public class ControllerServlet extends HttpServlet {
             response.sendRedirect(this.getServletContext().getContextPath() + "/AreaCheck?x=" + request.getParameter("x")
                     + "&y=" + request.getParameter("y") + "&r=" + request.getParameter("r"));
         } else {
-            PrintWriter printWriter = response.getWriter();
-            printWriter.println("Request with empty fields 0_0");
+            getServletContext().setAttribute("dotsList", null);
         }
     }
 

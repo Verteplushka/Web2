@@ -46,10 +46,8 @@ function checkAllFields() {
         },
         success: function (data) {
             $("#tbody").append(data);
-            localStorage.setItem("tbody", document.getElementById("tbody").innerHTML);
             addDot(x, y);
             $("#submit").prop("disabled", false);
-            // window.location.href = "/lab2_Web_exploded/index.jsp";
         },
     });
 }

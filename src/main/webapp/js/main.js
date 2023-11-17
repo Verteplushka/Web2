@@ -78,5 +78,4 @@ window.addEventListener("load", function () {
     }
     drawGraph();
     drawAllDots();
-    document.getElementById("tbody").innerHTML = localStorage.getItem("tbody");
 });

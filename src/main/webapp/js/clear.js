@@ -1,9 +1,22 @@
 $("#clear").on("click", clear);
 
 function clear() {
-    document.getElementById("tbody").innerHTML = "";
-    localStorage.setItem("tbody", "");
-    localStorage.setItem("dots", "");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawGraph();
+
+    $.ajax({
+        url: "Controller",
+        type: "POST",
+        cache: false,
+        dataType: "html",
+        beforeSend: function () {
+            event.preventDefault();
+            $("#clear").prop("disabled", true);
+        },
+        success: function () {
+            document.getElementById("tbody").innerHTML = "";
+            localStorage.setItem("dots", "");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawGraph();
+            $("#clear").prop("disabled", false);
+        },
+    });
 }
