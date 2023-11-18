@@ -46,8 +46,9 @@ function checkAllFields() {
         },
         success: function (data) {
             $("#tbody").append(data);
-            addDot(x, y);
+            //addDot(x, y, false);
             $("#submit").prop("disabled", false);
+            window.location.href = "index.jsp";
         },
     });
 }

@@ -90,6 +90,19 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function drawAllDots(){
+            let r = $("#r").val();
+            if (r === "") {
+                return;
+            }
+            <c:forEach var="dot" items="${dotsList}">
+                drawDot(${dot.getX()}/${dot.getR()}*r, ${dot.getY()/dot.getR()}*r, '${dot.getResult()}');
+            </c:forEach>
+        }
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
     <script src="big.js-master/big.js"></script>

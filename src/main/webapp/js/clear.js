@@ -1,7 +1,6 @@
 $("#clear").on("click", clear);
 
 function clear() {
-
     $.ajax({
         url: "Controller",
         type: "POST",
@@ -13,7 +12,6 @@ function clear() {
         },
         success: function () {
             document.getElementById("tbody").innerHTML = "";
-            localStorage.setItem("dots", "");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawGraph();
             $("#clear").prop("disabled", false);

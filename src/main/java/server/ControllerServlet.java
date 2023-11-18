@@ -29,7 +29,7 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
         ArrayList<Dot> dotsList = (ArrayList<Dot>) servletContext.getAttribute("dotsList");
-
+        req.setAttribute("dotsList", dotsList);
         resp.getWriter().write(dotsList.toString());
     }
 }

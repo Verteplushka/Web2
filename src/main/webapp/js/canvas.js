@@ -110,35 +110,15 @@ function setFields(x, y) {
     localStorage.setItem("y", y);
 }
 
-function addDot(x, y) {
-    let r = $("#r").val();
-    let jsonString = localStorage.getItem("dots");
-    let dots = [];
-    if (jsonString != "" & jsonString != null) {
-        dots = JSON.parse(jsonString);
-    }
-    dots.push([x / r, y / r]);
-    drawDot(x, y);
-    localStorage.setItem("dots", JSON.stringify(dots));
-}
-
-function drawDot(x, y) {
+function drawDot(x, y,  result) {
     x = 20 * x + canvas.height / 2;
     y = canvas.width / 2 - 20 * y;
-    ctx.fillStyle = "red"; // Цвет точки
+    console.log(result, result == 'hit');
+    if(result == 'hit'){
+        ctx.fillStyle = "green"; // Цвет точки
+    }
+    else{
+        ctx.fillStyle = "red"; // Цвет точки
+    }
     ctx.fillRect(x, y, 3, 3); // Рисование точки
-}
-
-function drawAllDots() {
-    let r = $("#r").val();
-    if (r === "") {
-        return;
-    }
-    let jsonString = localStorage.getItem("dots");
-    if (jsonString != null & jsonString != "") {
-        let dots = JSON.parse(jsonString);
-        for (let i = 0; i < dots.length; i++) {
-            drawDot(dots[i][0] * r, dots[i][1] * r);
-        }
-    }
 }
